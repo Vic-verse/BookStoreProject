@@ -1,0 +1,47 @@
+<template>
+    <lightning-card>
+        <lightning-layout class="slds-align_absolute-center">
+            <lightning-layout-item class="slds-size_1-of-5">         
+                    <lightning-input 
+                        type="search"  
+                        label="Book Name" 
+                        placeholder="Search Book"
+                        onchange={bookChangeHandler}>
+                    </lightning-input>   
+            </lightning-layout-item>
+            
+            <lightning-layout-item  class="slds-m-left_x-small slds-size_1-of-5">
+                    <lightning-combobox 
+                        name="Categories"
+                        label="Book Catergory"
+                        value={CategoryValues}
+                        options={Categoryoptions}
+                        placeholder="Select Book Category"
+                        onchange={handleCategoryOnChange}>
+                    </lightning-combobox>
+            </lightning-layout-item>
+            
+            <lightning-layout-item class="slds-m-left_x-small slds-size_1-of-5">
+                    <lightning-combobox 
+                        name="Author"
+                        label="Author Name"
+                        value={AuthorValues}
+                        options={Authoroptions}
+                        placeholder="Select Author Name"
+                        onchange={handleAuthorOnChange}>
+                    </lightning-combobox>
+            </lightning-layout-item>
+                  
+            <lightning-layout-item  class="slds-m-left_x-small slds-m-top_large slds-size_1-of-5">
+                 <lightning-button
+                        type="Search" 
+                        icon-name="utility:search"
+                        icon-position="left"
+                        variant="brand"
+                        onclick={SearchHandler}
+                        label="Search">
+                    </lightning-button>   
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

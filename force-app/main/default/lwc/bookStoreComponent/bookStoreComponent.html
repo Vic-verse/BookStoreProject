@@ -1,0 +1,25 @@
+<template>
+
+    <lightning-layout>
+        <lightning-layout-item flexibility="auto">
+            <lightning-card title="Search Book">
+                <c-search-Functionality></c-search-Functionality>
+            </lightning-card>
+        </lightning-layout-item>
+    </lightning-layout>
+    
+    <lightning-layout>
+        <lightning-layout-item flexibility="auto" size="8">
+            <lightning-card title="Book Records">
+                 <c-book-Data-Table></c-book-Data-Table> 
+            </lightning-card>     
+        </lightning-layout-item>
+        
+        <lightning-layout-item flexibility="auto" size="4">
+            <lightning-card title="New Book Entry">
+                <c-new-Book-Entry></c-new-Book-Entry> 
+            </lightning-card>     
+        </lightning-layout-item>
+    </lightning-layout>
+    
+</template>

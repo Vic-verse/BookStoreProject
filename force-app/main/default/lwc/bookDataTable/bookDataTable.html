@@ -1,0 +1,50 @@
+<template>
+    
+    <lightning-datatable
+        data={data}
+        columns={columns}
+        key-field="id"
+        hide-checkbox-column 
+        onrowaction={handleRowAction}>
+    </lightning-datatable>
+
+    <br/>
+
+    <template if:true={isDisplayNoRecords}>
+        <div class="slds-align_absolute-center">
+            <br/>
+            No records found
+        </div>
+    </template>
+
+    <br/>
+
+        <div class="slds-align_absolute-center" >
+            <div class="slds-var-p-right_xx-small">
+                <lightning-button 
+                    label="Prev"       
+                    disabled={isPrev}
+                    onclick={handlePagePrevAction}
+                    variant="brand"
+                    icon-name="utility:back"
+                    name="prev">
+                </lightning-button>
+            </div>
+
+            <span class="slds-var-p-left_xx-small">
+                {startingRecord}-{endingRecord} of {totalRecords} | Page {page} of {totalPages}
+            </span>
+
+            <div class="slds-var-p-left_xx-small">
+                <lightning-button 
+                    label="Next"     
+                    disabled={isNext}
+                    onclick={handlePageNextAction}
+                    variant="brand"
+                    icon-name="utility:forward"
+                    onrowaction={handleRowAction}
+                    name="next">
+                </lightning-button>
+            </div>
+        </div>
+</template>

@@ -1,0 +1,48 @@
+<template>
+
+    <template if:true={isVisible}>
+        <lightning-card>
+            <lightning-record-form
+                object-api-name={bookObject}
+                fields={myFields}
+                onsuccess={handleBookCreated}>
+                record-id={recordId}
+            </lightning-record-form>
+        </lightning-card>
+    </template>
+    
+    <template if:false={isVisible}>
+        <lightning-card title="Edit Form">
+            <lightning-record-form
+                object-api-name={bookObject}
+                mode="edit"
+                layout-type="Full"
+                record-id={editableRecordId}>
+            </lightning-record-form>
+        </lightning-card>
+    </template>
+   
+</template>
+
+    <!-- <lightning-record-edit-form   
+        object-api-name={bookObject} 
+        record-id={recordId}
+        layout-type="Compact">
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" flexibility="auto">
+              
+                <lightning-input-field field-name={BookNameField}></lightning-input-field>
+                <lightning-input-field field-name={BookCatergoryField}></lightning-input-field>
+                <lightning-input-field field-name={AuthorNameField}></lightning-input-field>
+                <lightning-input-field field-name={PublishingDate}></lightning-input-field>
+                      
+                <lightning-input-field field-name={Price}></lightning-input-field>
+                <lightning-input-field field-name={Category}></lightning-input-field>
+                <lightning-input-field field-name={Publisher}></lightning-input-field>
+                <lightning-input-field field-name={Description}></lightning-input-field>
+                                        
+                <lightning-button type="Create" variant="brand" label="Create Book" onclick={createBook}></lightning-button>
+            
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-record-edit-form> -->
