@@ -6,8 +6,8 @@ import Search_File from '@salesforce/messageChannel/messagingChannel__c';
 export default class SearchFunctionality extends LightningElement {
 
 
-    @track catOptions = [];
-    @track authOption = [];
+    @track catOptions;
+    @track authOption;
     
     @track bookName;
     @track bcat;

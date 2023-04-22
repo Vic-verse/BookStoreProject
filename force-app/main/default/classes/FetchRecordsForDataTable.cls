@@ -4,6 +4,7 @@ public with sharing class FetchRecordsForDataTable {
     @AuraEnabled(cacheable = true)
     public static List<Book__c> getSearchList(String book, String bookCategory, String authorName)
     {
+        String booName = '%'+book+'%';
         try{
             list<Book__c> bookList = new list<Book__c> ();
              
@@ -11,8 +12,8 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
-                    Book_Name__c =: book
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
+                    Book_Name__c LIKE: booName
                 ];
             }
         
@@ -20,8 +21,8 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
-                    Book_Name__c =: book AND Books_Category__r.Name =: bookCategory
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
+                    Book_Name__c LIKE: booName AND Books_Category__r.Name =: bookCategory
                 ];
             }
 
@@ -29,7 +30,7 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
                     Books_Category__r.Name =: bookCategory
                 ];
             }
@@ -38,7 +39,7 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
                     Books_Category__r.Name =: bookCategory AND Author__r.Name =: authorName
                 ];
             }
@@ -47,7 +48,7 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
                     Author__r.Name =: authorName
                 ];
             }
@@ -56,8 +57,8 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
-                    Book_Name__c =: book AND Author__r.Name =: authorName
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
+                    Book_Name__c LIKE: booName AND Author__r.Name =: authorName
                 ];
             }
 
@@ -65,8 +66,8 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c WHERE
-                    Book_Name__c =: book AND Books_Category__r.Name =: bookCategory AND Author__r.Name =: authorName
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c WHERE
+                    Book_Name__c LIKE: booName AND Books_Category__r.Name =: bookCategory AND Author__r.Name =: authorName
                 ];
             }
            
@@ -74,7 +75,7 @@ public with sharing class FetchRecordsForDataTable {
             {
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                    Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c
+                    Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c
                 ];
             }
             
@@ -93,7 +94,7 @@ public with sharing class FetchRecordsForDataTable {
             list<Book__c> bookList;           
                 bookList = [
                     SELECT Id, Book_Name__c, Author__c, Author__r.Name, Books_Category__c, Books_Category__r.Name,
-                                   Date_of_Publishing__c, Price__c, Description__c, Category__c, Publisher__c FROM Book__c
+                                   Date_of_Publishing__c, Price__c, Description__c, Category__c FROM Book__c
                 ];        
 
             return bookList;
@@ -103,8 +104,7 @@ public with sharing class FetchRecordsForDataTable {
                 throw new AuraHandledException(e.getMessage());
              }
     }   
-
-
+    
     @AuraEnabled
     public static void deleteBookRecords(Id bookrecordId)
     {
@@ -113,6 +113,49 @@ public with sharing class FetchRecordsForDataTable {
         if(!bookList.isEmpty())
         {
             delete bookList;
+        }
+    }
+
+    @AuraEnabled(cacheable = true)
+    public static List<Book__c> getBooks(String bookCatName){
+        try {
+            List<Book__c> bookList = new List<Book__c> ();
+
+            if(bookCatName != null)
+            {
+                bookList = [SELECT Id, Book_Name__c, Image_Url__c, Books_Category__c, Books_Category__r.Name, Author__c, Author__r.Name from Book__c WHERE Books_Category__r.Name =: bookCatName];
+            }
+            
+            
+            if(bookCatName == 'all')
+            {           
+                bookList = [SELECT Id, Book_Name__c, Image_Url__c, Books_Category__c, Books_Category__r.Name, Author__c, Author__r.Name, Price__c from Book__c];
+            }
+
+            if(!bookList.isEmpty())
+            {
+                for(Book__c bookI: bookList)
+                {
+                    system.debug(bookI.Id);
+                    system.debug(bookI.Book_Name__c);
+                }
+            }else
+            {
+                System.debug('List is empty');
+            }
+            return bookList;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled(cacheable = true)
+    public static list<Book__c> getDefaultBooks(){
+        try {
+            List<Book__c> bookList = [SELECT Id, Book_Name__c, Image_Url__c, Books_Category__c, Books_Category__r.Name, Author__c, Author__r.Name, Price__c from Book__c];  
+            return bookList;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
         }
     }
 }

@@ -5,13 +5,12 @@ import Book_Catergory_FIELD from '@salesforce/schema/Book__c.Books_Category__c';
 import Author_Name_FIELD from '@salesforce/schema/Book__c.Author__c';
 
 import Book_Desc_FIELD from '@salesforce/schema/Book__c.Description__c';
-import Book_Pub_FIELD from '@salesforce/schema/Book__c.Publisher__c';
 import Category_FIELD from '@salesforce/schema/Book__c.Category__c';
 import Book_Price_FIELD from '@salesforce/schema/Book__c.Price__c';
 import Book_PubDate_FIELD from '@salesforce/schema/Book__c.Date_of_Publishing__c';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { createRecord } from 'lightning/uiRecordApi';
-// import { NavigationMixin } from 'lightning/navigation'
+
 import {subscribe, MessageContext } from 'lightning/messageService';
 import Search_File from '@salesforce/messageChannel/messagingChannel__c';
 
@@ -22,7 +21,7 @@ export default class NewBookEntry extends LightningElement{
     subscription = null;
     isVisible = true;
 
-    myFields = [Book_NAME_FIELD, Book_Catergory_FIELD, Author_Name_FIELD, Book_Desc_FIELD, Book_Pub_FIELD,
+    myFields = [Book_NAME_FIELD, Book_Catergory_FIELD, Author_Name_FIELD, Book_Desc_FIELD,
         Category_FIELD, Book_Price_FIELD, Book_PubDate_FIELD
     ];
         

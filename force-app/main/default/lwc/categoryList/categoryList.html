@@ -1,0 +1,31 @@
+<template>
+  <lightning-card>
+          <lightning-button 
+          class="slds-align_absolute-center"
+          flexibility="auto"
+          variant="brand-outline" 
+          label="New Book" 
+          title="Creating New Book"
+          onclick={handleClick}>
+          </lightning-button>
+
+          <lightning-vertical-navigation
+                  selected-item="all"
+                  onselect={handleSelect}>
+              <lightning-vertical-navigation-section label="Categories" class="slds-scrollable_y" >
+                      <lightning-vertical-navigation-item 
+                        label="All Categories"
+                        name='all'>
+                      </lightning-vertical-navigation-item>      
+
+                  <template for:each={data} for:item="item">
+                      <lightning-vertical-navigation-item 
+                        key={item.Id}
+                        label={item.Name} 
+                        name={item.Name}>
+                      </lightning-vertical-navigation-item>      
+                  </template>
+              </lightning-vertical-navigation-section>
+          </lightning-vertical-navigation>
+  </lightning-card>
+</template>

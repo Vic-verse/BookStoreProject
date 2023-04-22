@@ -1,0 +1,87 @@
+<template>
+    <lightning-card>
+        <lightning-layout style="margin-top: -1rem;">
+
+            <template for:each={data} for:item="bookDetails">
+                <lightning-layout-item
+                    key={bookDetails.Id}>
+
+                    <lightning-record-view-form 
+                        record-id={recordId}
+                        object-api-name='Book__c'
+                        density="comfy">
+
+                    <div class="slds-grid slds-grid_vertical slds-p-around_xxx-small" style="height: 30%; width: 85%">
+                      
+                        <div>
+                        <img class="slds-col slds-box slds-box_x-small slds-m-around_x-small"
+                        style="max-width:100%;max-height:100%; 
+                                        height: 100%; width: 350px;
+                                        display: block;
+                                        box-sizing: border-box;"
+                         src = {bookDetails.Book__r.Image_Url__c}
+                         alt="111.jpg">
+                        </div>
+                    
+                        <div class="slds-has-flexi-truncate slds-col" style="max-width:50%; display: block;">
+                            <!-- <div style="word-wrap: break-word;"><b>Book Name: </b>{bookDetails.Book__r.Book_Name__c}</div>
+                            <div class="slds-truncate"><b>Author: </b>{bookDetails.Book__r.Author__r.Name}</div>
+                            <div class="slds-truncate"><b>Category: </b>{bookDetails.Book__r.Books_Category__r.Name}</div>
+                            <div class="slds-truncate"><b>Publishing Date: </b>{bookDetails.Book__r.Date_of_Publishing__c}</div>
+                            <div class="slds-truncate"><b>Price: </b>{bookDetails.Book__r.Price__c}</div> -->
+
+                            <lightning-output-field class="slds-truncate" field-name="Book_Name__c"></lightning-output-field>
+                            <lightning-output-field class="slds-truncate" field-name="Author__c"></lightning-output-field>
+                            <lightning-output-field class="slds-truncate" field-name="Books_Category__c"></lightning-output-field>
+                            <lightning-output-field class="slds-truncate" field-name="Price__c"></lightning-output-field> 
+                            
+                        
+                        </div>
+                       
+                        <div class="slds-col">
+                            <lightning-map 
+                                class="slds-box slds-box_x-small 
+                                       slds-m-around_x-small"
+                                map-markers={mapMarkers} 
+                                zoom-level="12">
+                            </lightning-map>
+                        </div>
+                                    
+                            
+                    </div>
+                    </lightning-record-view-form>
+           
+                </lightning-layout-item>
+            </template>
+        </lightning-layout>
+    </lightning-card>
+</template>
+
+<!-- 
+<template>
+    <lightning-card>
+        <lightning-layout>
+                <div class="slds-grid slds-grid_vertical">
+                       <div class="slds-col slds-p-around_xx-small">
+                        <img
+                         src = "https://www.thewildlibrarian.com/wp-content/uploads/2019/03/img_0848.jpg"
+                         alt="111.jpg"   >
+                    </div>
+                    
+                    <div class="slds-col slds-p-around_xx-small slds-has-flexi-truncate">
+                       <div class="slds-truncate">BookName</div>
+                       <div class="slds-truncate">Catt</div>
+                       <div class="slds-truncate">aaaaaaa</div>
+                       <div class="slds-truncate">ppppppp</div>
+                    </div>
+                    
+                    <div class="slds-col slds-p-around_xx-small">
+                        <img
+                        src = "https://www.thewildlibrarian.com/wp-content/uploads/2019/03/img_0848.jpg"
+                        alt="111.jpg"   >
+                    </div>
+
+                </div>
+        </lightning-layout>
+    </lightning-card>
+</template> -->

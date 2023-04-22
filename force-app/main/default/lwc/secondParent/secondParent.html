@@ -1,0 +1,21 @@
+<template>
+
+    <lightning-layout>
+        <lightning-layout-item flexibility="auto" size ="2">
+             <div class="slds-scrollable_y"  style="height: 30%; width: 100%">
+                    <c-category-list></c-category-list>
+             </div> 
+        </lightning-layout-item>
+    
+        <lightning-layout-item size="7">
+                <c-data-Table-Inside-Card></c-data-Table-Inside-Card>                  
+        </lightning-layout-item>
+        
+        <lightning-layout-item flexibility="auto" size="4">
+            <div class="slds-scrollable_y"  style="height: 30%; width: 75%">
+                <c-book-With-Publisher></c-book-With-Publisher>
+            </div>
+           
+        </lightning-layout-item>
+        </lightning-layout>   
+</template>

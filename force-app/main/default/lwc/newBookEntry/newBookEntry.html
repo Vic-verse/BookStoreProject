@@ -1,7 +1,7 @@
 <template>
 
     <template if:true={isVisible}>
-        <lightning-card>
+        <lightning-card title="New Book">
             <lightning-record-form
                 object-api-name={bookObject}
                 fields={myFields}
@@ -12,11 +12,12 @@
     </template>
     
     <template if:false={isVisible}>
-        <lightning-card title="Edit Form">
+        <lightning-card title="Edit Book">
             <lightning-record-form
                 object-api-name={bookObject}
                 mode="edit"
                 layout-type="Full"
+                
                 record-id={editableRecordId}>
             </lightning-record-form>
         </lightning-card>

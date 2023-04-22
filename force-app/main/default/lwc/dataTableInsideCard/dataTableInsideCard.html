@@ -1,0 +1,74 @@
+<template >
+    <lightning-card>
+        <lightning-layout multiple-rows="true" style="margin-top: -2rem;">
+            <template for:each={data} for:item="bookDetails">
+                <lightning-layout-item flexibility="auto"
+                    key={bookDetails.Id}
+                    size=4
+                    class="slds-var-p-around_x-small">
+
+                   <lightning-card>
+                    <lightning-record-view-form 
+                        record-id={bookDetails.Id}
+                        object-api-name='Book__c'
+                        density="comfy">
+                        <div class="slds-var-p-horizontal_small">
+                            
+                            <div class="slds-grid slds-wrap slds-grid_vertical">
+                                <div class="slds-col" style="max-width:95%;">
+                                    <img
+                                        onclick={handleBook}
+                                        data-link={bookDetails.Id}  
+                                        
+                                        style="max-width:85%;max-height:100%; 
+                                        height: 290px; width: 480px;
+                                        display: block;
+                                        box-sizing: border-box;"
+                                        src = {bookDetails.Image_Url__c}
+                                        alt="11.jpg">
+                                </div>
+
+                                <div class="slds-has-flexi-truncate slds-col" style="max-width:90%; display: block;">
+                                    <lightning-output-field class="slds-truncate" field-name="Book_Name__c"></lightning-output-field>
+                                    <lightning-output-field class="slds-truncate" field-name="Author__c"></lightning-output-field>
+                                    <lightning-output-field class="slds-truncate" field-name="Books_Category__c"></lightning-output-field>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning-record-view-form>
+                        
+                    </lightning-card>
+                </lightning-layout-item>
+            </template>
+            <br/>
+        </lightning-layout>
+        <div class="slds-align_absolute-center" >
+            <div class="slds-var-p-right_xx-small">
+                <lightning-button 
+                    label="Prev"       
+                    disabled={isPrev}
+                    onclick={handlePagePrevAction}
+                    variant="brand"
+                    icon-name="utility:back"
+                    name="prev">
+                </lightning-button>
+            </div>
+
+            <span class="slds-var-p-left_xx-small">
+                {startingRecord}-{endingRecord} of {totalRecords} | Page {page} of {totalPages}
+            </span>
+
+            <div class="slds-var-p-left_xx-small">
+                <lightning-button 
+                    label="Next"     
+                    disabled={isNext}
+                    onclick={handlePageNextAction}
+                    variant="brand"
+                    icon-name="utility:forward"
+                    onrowaction={handleRowAction}
+                    name="next">
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

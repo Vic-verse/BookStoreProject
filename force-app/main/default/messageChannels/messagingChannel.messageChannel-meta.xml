@@ -23,4 +23,13 @@
         <fieldName>AuthorName</fieldName>
     </lightningMessageFields>
 
+    <lightningMessageFields>
+        <fieldName>BookCat</fieldName>
+    </lightningMessageFields>
+
+    <lightningMessageFields>
+        <fieldName>BId</fieldName>
+    </lightningMessageFields>
+
+
 </LightningMessageChannel>

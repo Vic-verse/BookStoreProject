@@ -15,6 +15,7 @@ const actions = [
 
 export default class BookDataTable extends LightningElement {
    
+
     @track endingRecord = 0;
     @track startingRecord = 1;
     @track page = 1;
@@ -62,7 +63,6 @@ export default class BookDataTable extends LightningElement {
             console.log('Author Name: '+this.aName);
     
     }
-
 
     @track columns =
         [
@@ -134,13 +134,13 @@ export default class BookDataTable extends LightningElement {
                 { "Price__c": dar.Price__c },
             ));
          
-            console.log('--------------------')
-           console.log(this.data.length);
-           console.log('--------------------')
-           console.log(this.bName);
-           console.log(this.bCat);
-           console.log(this.aName);
-            console.log('--------------------')
+        //     console.log('--------------------')
+        //    console.log(this.data.length);
+        //    console.log('--------------------')
+        //    console.log(this.bName);
+        //    console.log(this.bCat);
+        //    console.log(this.aName);
+        //     console.log('--------------------')
 
                 this.items = this.data;
                 this.totalRecords = this.data.length;
